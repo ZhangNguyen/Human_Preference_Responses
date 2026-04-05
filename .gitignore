@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+outputs/
+data/sft_ds/
+data/dpo_ds/
+*.zip
+.env
+models_saved/

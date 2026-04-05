@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>So sánh Model Gốc và Model Finetune</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>So sánh câu trả lời của 2 model</h1>
+        <p class="subtitle">
+            Nhập một câu hỏi, hệ thống sẽ chạy song song model gốc và model finetune.
+        </p>
+
+        <div class="ask-box">
+            <textarea id="question" placeholder="Nhập câu hỏi của bạn..."></textarea>
+            <button id="askBtn">Gửi câu hỏi</button>
+        </div>
+
+        <div id="loading" class="loading hidden">Đang xử lý, vui lòng chờ...</div>
+
+        <div class="result-grid">
+            <div class="card">
+                <h2>Model gốc</h2>
+                <div class="meta">
+                    <span id="baseLatency">Thời gian: --</span>
+                </div>
+                <pre id="baseAnswer">Chưa có dữ liệu.</pre>
+            </div>
+
+            <div class="card">
+                <h2>Model finetune</h2>
+                <div class="meta">
+                    <span id="ftLatency">Thời gian: --</span>
+                </div>
+                <pre id="ftAnswer">Chưa có dữ liệu.</pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
