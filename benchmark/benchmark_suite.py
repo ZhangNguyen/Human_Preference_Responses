@@ -82,8 +82,6 @@ def run_lm_eval(
     out_file = output_dir / "lm_eval_results.json"
     cmd = [
         "python", "-m", "lm_eval",
-        "--model", "hf",
-        "--model_args", f"pretrained={model_path},trust_remote_code=True",
         "--apply_chat_template",
         "--model",
         "hf",
