@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finetuned Model Space</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-bg"></div>
+
+    <main class="shell">
+        <section class="hero card">
+            <div class="hero-badge">Finetuned Model</div>
+            <h1 id="title">Model finetune đang sẵn sàng</h1>
+            <p class="hero-desc">
+                Vì mô hình chỉ chạy bằng CPU, xin bạn đợi khoảng 2 phút
+            </p>
+
+            <div class="status-row">
+                <div class="status-pill">
+                    <span class="dot"></span>
+                    <span id="modelName">Đang tải thông tin model...</span>
+                </div>
+                <div class="status-pill subtle">
+                    <span>Latency:</span>
+                    <strong id="latencyText">--</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="workspace single">
+            <div class="input-panel card">
+                <label for="question" class="section-label">Câu hỏi</label>
+                <textarea id="question" placeholder="Nhập câu hỏi của bạn..."></textarea>
+
+                <div class="action-row">
+                    <button id="askBtn" class="primary-btn">Gửi câu hỏi</button>
+                    <button id="clearBtn" class="ghost-btn" type="button">Xóa nội dung</button>
+                </div>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <span>Đang sinh câu trả lời...</span>
+                </div>
+            </div>
+
+            <div class="output-panel card">
+                <div class="answer-header">
+                    <div>
+                        <p class="section-label">Câu trả lời</p>
+                        <h2>Kết quả từ model finetune</h2>
+                    </div>
+                </div>
+
+                <pre id="answerBox" class="answer-box">Chưa có dữ liệu.</pre>
+                <div id="errorBox" class="error-box hidden"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

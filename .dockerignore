@@ -1,0 +1,11 @@
+.git
+.idea
+__pycache__/
+*.pyc
+notebooks/
+tests/
+benchmark/
+results/
+data/
+outputs/
+models_saved/

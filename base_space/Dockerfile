@@ -5,13 +5,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# 1. copy requirements trước
 COPY requirements.txt .
-
-# 2. cài dependency (được cache)
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# 3. copy code sau
 COPY . .
 
 EXPOSE 5000

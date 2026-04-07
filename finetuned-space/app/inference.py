@@ -1,4 +1,3 @@
-import os
 import time
 from typing import List, Tuple, Optional, Dict, Any
 
@@ -107,21 +106,13 @@ class ChatModel:
             )
 
         output_ids = outputs[0][inputs.shape[-1]:]
-        assistant_text = self.tokenizer.decode(output_ids, skip_special_tokens=True).strip()
-        return assistant_text
+        return self.tokenizer.decode(output_ids, skip_special_tokens=True).strip()
 
 
 class SingleModelService:
     def __init__(self):
-        role = os.getenv("MODEL_ROLE", "finetuned").strip().lower()
-        explicit_model_id = os.getenv("MODEL_ID", "").strip()
-
-        if role == "base":
-            self.model_dir = explicit_model_id or cfg.base_model
-            self.model_name = "base_model"
-        else:
-            self.model_dir = explicit_model_id or cfg.final_model_dir
-            self.model_name = "finetuned_model"
+        self.model_dir = cfg.finetuned_model
+        self.model_name = cfg.model_name
 
         self.chat_model = ChatModel(
             model_dir=self.model_dir,
@@ -134,11 +125,9 @@ class SingleModelService:
         history: Optional[List[Tuple[str, str]]] = None,
     ) -> Dict[str, Any]:
         start = time.perf_counter()
-
         try:
             answer = self.chat_model.generate(prompt, history)
             latency = round(time.perf_counter() - start, 3)
-
             return {
                 "question": prompt,
                 "model_name": self.model_name,
@@ -149,7 +138,6 @@ class SingleModelService:
             }
         except Exception as e:
             latency = round(time.perf_counter() - start, 3)
-
             return {
                 "question": prompt,
                 "model_name": self.model_name,
